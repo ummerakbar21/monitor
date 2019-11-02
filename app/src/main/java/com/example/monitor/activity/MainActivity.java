@@ -1,4 +1,4 @@
-package com.example.monitor;
+package com.example.monitor.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.monitor.R;
 
 public class MainActivity extends AppCompatActivity {
 
