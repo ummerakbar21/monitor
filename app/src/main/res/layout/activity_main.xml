@@ -23,17 +23,16 @@
       android:textSize="35sp"
       android:text="Web Digitisation of Banihal-Baramulla Section of USBRL Project" />
 
-
-  <ImageView
+  <de.hdodenhof.circleimageview.CircleImageView
       android:id="@+id/logo"
-      android:layout_width="120dp"
-      android:layout_height="120dp"
-      android:layout_marginTop="40dp"
-      app:layout_constraintTop_toBottomOf="@id/marque_text"
+      android:layout_width="182dp"
+      android:layout_height="176dp"
+      android:src="@drawable/logo"
+      app:civ_border_color="#ff0000"
+      app:civ_border_width="4dp"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
-      android:src="@mipmap/ic_launcher"
-      />
+      app:layout_constraintTop_toBottomOf="@id/marque_text" />
 
 
   <ImageView
