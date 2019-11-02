@@ -55,6 +55,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Distance"
+    android:textSize="15sp"
     android:background="@drawable/square_shape"
     app:layout_constraintTop_toBottomOf="@id/block_name_to_spinner"
     app:layout_constraintLeft_toLeftOf="@id/guideline"
@@ -66,13 +67,134 @@
             android:text="Block section Distance"
             android:textSize="16sp"
             android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_margin="20dp"
+            app:layout_constraintRight_toLeftOf="@id/guideline"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/distance_tv"
-            app:layout_constraintBottom_toBottomOf="parent"
+
             />
+        <Spinner
+            android:layout_width="0dp"
+            android:id="@+id/block_distance_spinner"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/distance_tv"
+
+            />
+
+        <TextView
+            android:id="@+id/block_location_label"
+            android:text="Block section Location"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:layout_constraintRight_toLeftOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/block_distance_label"
+            />
+
+        <Spinner
+            android:id="@+id/block_location_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/block_distance_spinner" />
+
+        <TextView
+            android:id="@+id/chain_age_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chainage"
+            android:textSize="15sp"
+            android:background="@drawable/square_shape"
+            app:layout_constraintTop_toBottomOf="@id/block_location_spinner"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            android:layout_margin="20dp"
+            />
+
+        <TextView
+            android:id="@+id/foundation_type_label"
+            android:text="Foundation Type"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toLeftOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chain_age_tv"
+
+            />
+        <Spinner
+            android:id="@+id/foundation_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="46dp"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/chain_age_tv" />
+
+        <TextView
+            android:id="@+id/mast_type_label"
+            android:text="Mast Type"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toLeftOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/foundation_type_label"
+
+            />
+        <Spinner
+            android:id="@+id/mast_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="46dp"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/foundation_spinner" />
+        <TextView
+            android:id="@+id/progress_label"
+            android:text="Select Progress Status"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toLeftOf="@id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mast_type_label"
+
+            />
+
+        <Switch
+            android:id="@+id/status_Switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/mast_spinner"
+            android:checked="false"
+            android:showText="true"
+           />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
