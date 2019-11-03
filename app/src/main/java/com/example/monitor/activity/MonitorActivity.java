@@ -1,13 +1,23 @@
 package com.example.monitor.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -16,6 +26,7 @@ import com.example.monitor.R;
 
 public class MonitorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private static final int GALLERY_REQUEST_CODE = 1 ;
     Switch simpleSwitch;
     TextView progressTv;
     private Spinner spin1;
@@ -23,6 +34,9 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
     private String[]  stations = { "From","Baramula", "USA", "China", "Japan", "Other"};
     private TextView distanceTV;
     private   String[] distance={"9","7","6","7","0"};
+    private ImageView datePicker;
+    private int mYear, mMonth, mDay;
+    private Button chooseBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +44,8 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
         setContentView(R.layout.activity_monitor);
         simpleSwitch = findViewById(R.id.status_Switch); // initiate Switch
         progressTv = findViewById(R.id.switch_label_tv);
+        datePicker = findViewById(R.id.date_picker);
+        chooseBtn = findViewById(R.id.Choose_Files_btn);
 
 
 
@@ -76,6 +92,59 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
         spin2.setAdapter(aa);
 
 
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar  = Calendar.getInstance();
+
+                mYear = calendar.get(Calendar.YEAR);
+                mMonth = calendar.get(Calendar.MONTH);
+                mDay = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MonitorActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                    }
+                },mYear,mMonth,mDay);
+                datePickerDialog.show();
+            }
+        });
+
+        chooseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChooseImage();
+            }
+        });
+    }
+
+    private void ChooseImage() {
+        Intent i = new Intent(
+                Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(i, GALLERY_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+
+           // imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+        }
     }
 
     @Override
