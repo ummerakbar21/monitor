@@ -35,7 +35,7 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
     TextView progressTv;
     private Spinner spin1;
     private Spinner spin2, distanceBlockSpinner,foundationSpinner,mastSpinner;
-    private String[] stationsFrom = { "From","Baramula", "USA", "China", "Japan", "Other"};
+    private String[] stationsFrom = { "From","Baramula", "Sopore", "Hamre", "Pattan", "Mazhom", "Budgam", "Srinagar", "Pampore","Kakapora","Awantipora","Panzgam","Bijbehara","Anantnag","Dadura","Qazigund","Banihal","Arpinchala","Sumber","Dharam","Sangaldan","Udhampur"};
     private String[]  stationsTo = { "To","Baramula", "USA", "China", "Japan", "Other"};
     private String[]  type = { "Type"};
 
@@ -48,7 +48,11 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
     private int mYear, mMonth, mDay;
     private Button chooseBtn;
     private Spinner blockLocSpinner;
-    private CheckBox mastsCheckbox,foundationCheckbox;
+    private CheckBox mastsCheckbox
+
+
+
+,foundationCheckbox;
     private Button saveBtn;
     private Switch holdSwitch;
     private EditText reasonView;
