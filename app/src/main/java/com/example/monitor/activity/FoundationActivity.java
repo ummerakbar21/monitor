@@ -1,9 +1,12 @@
 package com.example.monitor.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.monitor.R;
 import com.github.mikephil.charting.charts.PieChart;
@@ -21,11 +24,14 @@ public class FoundationActivity extends AppCompatActivity {
     PieDataSet pieDataSet;
     ArrayList pieEntries;
     ArrayList PieEntryLabels;
+    CardView cardViewone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foundation);
 
+        cardViewone = findViewById(R.id.cardview_one);
         getEntries();
         Description description =new Description();
         description.setText("");
@@ -62,6 +68,13 @@ public class FoundationActivity extends AppCompatActivity {
 
 
         pieDataSet.setSliceSpace(5f);
+
+        cardViewone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FoundationActivity.this,MonitorActivity.class));
+            }
+        });
     }
     private void getEntries() {
         pieEntries = new ArrayList<>();

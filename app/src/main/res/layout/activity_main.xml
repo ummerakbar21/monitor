@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#fcd734"
+    android:background="#f39c12"
+    android:id="@+id/rootLayout"
     tools:context=".activity.MainActivity">
 
   <TextView
@@ -20,7 +21,7 @@
       android:marqueeRepeatLimit="marquee_forever"
       android:scrollHorizontally="true"
       android:textColor="@android:color/white"
-      android:textSize="35sp"
+      android:textSize="15sp"
       android:text="Web Digitisation of Banihal-Baramulla Section of USBRL Project" />
 
   <de.hdodenhof.circleimageview.CircleImageView
@@ -87,7 +88,7 @@
       android:layout_marginTop="40dp"
       android:layout_marginLeft="40dp"
       android:layout_marginRight="40dp"
-      android:background="#ff0000"
+      android:background="#c0392b"
       android:text="Login"
       android:textColor="@android:color/white"
       android:textSize="20sp"
