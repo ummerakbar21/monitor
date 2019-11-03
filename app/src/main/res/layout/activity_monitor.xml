@@ -49,10 +49,9 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_margin="20dp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/login"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
             app:layout_constraintLeft_toLeftOf="@id/guideline"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/block_name_from_spinner"
 
             />
@@ -65,6 +64,8 @@
             android:background="@drawable/square_shape"
             android:hint="Distance"
             android:text="Distance"
+            android:textStyle="bold"
+            android:padding="5dp"
             android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/block_name_to_spinner" />
@@ -86,7 +87,7 @@
         <Spinner
             android:id="@+id/block_distance_spinner"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_margin="20dp"
             android:background="@android:drawable/btn_dropdown"
             app:layout_constraintLeft_toLeftOf="@id/guideline"
@@ -99,7 +100,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-
             android:layout_marginTop="36dp"
             android:text="Block section Location"
             android:textColor="@android:color/black"
@@ -112,7 +112,7 @@
         <Spinner
             android:id="@+id/block_location_spinner"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="36dp"
             android:background="@android:drawable/btn_dropdown"
@@ -126,6 +126,8 @@
             android:layout_margin="20dp"
             android:background="@drawable/square_shape"
             android:text="Chainage"
+            android:textStyle="bold"
+            android:padding="5dp"
             android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/block_location_spinner" />
@@ -149,7 +151,7 @@
         <Spinner
             android:id="@+id/foundation_spinner"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="36dp"
             android:background="@android:drawable/btn_dropdown"
@@ -175,7 +177,7 @@
         <Spinner
             android:id="@+id/mast_spinner"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="28dp"
             android:background="@android:drawable/btn_dropdown"
@@ -187,7 +189,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="60dp"
+
             android:layout_marginRight="20dp"
             android:text="Select Progress Status"
             android:textColor="@android:color/black"
@@ -195,8 +197,8 @@
 
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/status_Switch"
             app:layout_constraintRight_toLeftOf="@id/guideline"
-
             app:layout_constraintTop_toBottomOf="@id/mast_type_label" />
 
         <Switch
@@ -206,6 +208,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="46dp"
             android:layout_marginRight="20dp"
+            android:padding="5dp"
             android:checked="false"
             android:showText="false"
             app:layout_constraintLeft_toLeftOf="@id/guideline"
@@ -232,10 +235,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="52dp"
+
             android:layout_marginRight="20dp"
             android:text="Progress Date"
             android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="@+id/date_picker"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -244,15 +248,16 @@
 
         <EditText
             android:id="@+id/hold_tv"
-            android:layout_width="136dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="HOLD"
+            android:hint="Reason"
+            android:layout_marginRight="10dp"
             android:textColor="@android:color/black"
             android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progress_label" />
+            app:layout_constraintStart_toStartOf="@+id/switch_label_tv"
+            app:layout_constraintEnd_toEndOf="@+id/switch_label_tv"
+            app:layout_constraintTop_toBottomOf="@+id/switch_label_tv" />
 
         <ImageView
             android:id="@+id/date_picker"
@@ -262,7 +267,7 @@
             android:layout_marginTop="46dp"
             android:src="@drawable/ic_today_black_24dp"
             app:layout_constraintLeft_toLeftOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/status_Switch" />
+            app:layout_constraintTop_toBottomOf="@id/hold_tv" />
 
         <TextView
             android:id="@+id/date_tv"
@@ -378,7 +383,6 @@
 
             android:layout_marginLeft="44dp"
             android:layout_marginTop="24dp"
-            android:background="#f44336"
             android:text="Save"
             android:textColor="@android:color/white"
             app:layout_constraintHorizontal_bias="0.0"

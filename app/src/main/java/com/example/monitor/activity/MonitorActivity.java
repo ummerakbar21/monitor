@@ -16,15 +16,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.monitor.R;
 
-public class MonitorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MonitorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener , CompoundButton.OnCheckedChangeListener {
 
     private static final int GALLERY_REQUEST_CODE = 1 ;
     Switch simpleSwitch;
@@ -35,7 +39,7 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
     private String[]  stationsTo = { "To","Baramula", "USA", "China", "Japan", "Other"};
     private String[]  type = { "Type"};
 
-    private TextView distanceTV, chainageView;
+    private TextView distanceTV, chainageView,dateView;
     private   String[] distance={"9","7","6","7","5","0"};
     private   String[] chainage={"9","7","6","7","5","7"};
     private String[] distanceInKm={"Km","7","6","7","12","0"};
@@ -44,7 +48,10 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
     private int mYear, mMonth, mDay;
     private Button chooseBtn;
     private Spinner blockLocSpinner;
-
+    private CheckBox mastsCheckbox,foundationCheckbox;
+    private Button saveBtn;
+    private Switch holdSwitch;
+    private EditText reasonView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +60,20 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
         progressTv = findViewById(R.id.switch_label_tv);
         datePicker = findViewById(R.id.date_picker);
         chooseBtn = findViewById(R.id.Choose_Files_btn);
+        mastsCheckbox=findViewById(R.id.masts_checkbox);
+        mastsCheckbox.setOnCheckedChangeListener(this);
+        foundationCheckbox=findViewById(R.id.foundation_checkbox);
+        foundationCheckbox.setOnCheckedChangeListener(this);
+
+        saveBtn=findViewById(R.id.save_btn);
+        saveBtn.setEnabled(false);
+        saveBtn.setBackgroundColor(Color.GRAY);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MonitorActivity.this, "Data uploaded", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 
@@ -71,7 +92,21 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
 
         foundationSpinner=findViewById(R.id.foundation_spinner);
         mastSpinner=findViewById(R.id.mast_spinner);
+        holdSwitch= findViewById(R.id.status_Switch);
+        reasonView=findViewById(R.id.hold_tv);
+        reasonView.setVisibility(View.GONE);
 
+        holdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(holdSwitch.isChecked()){
+                    reasonView.setVisibility(View.VISIBLE);
+                }else {
+                    reasonView.setVisibility(View.GONE);
+                }
+
+            }
+        });
 
 
         //Creating the ArrayAdapter instance having the country list
@@ -203,36 +238,37 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getId()){
-            case R.id.block_name_from_spinner:
-                if(position > 0){
-                    if(position< stationsFrom.length-1){
-                        spin2.setSelection(position+1);
+        try {
+            switch (parent.getId()){
+                case R.id.block_name_from_spinner:
+                    if(position > 0){
+                        if(position< stationsFrom.length-1){
+                            spin2.setSelection(position+1);
+                        }else {
+                            spin2.setSelection(position);
+                        }
+                        distanceTV.setText(distance[position]);
+
                     }else {
+                        TextView tv = (TextView) view;
                         spin2.setSelection(position);
+                        tv.setTextColor(Color.GRAY);
+
                     }
-                    distanceTV.setText(distance[position]);
-
-                }else {
-                    TextView tv = (TextView) view;
-                    spin2.setSelection(position);
-                    tv.setTextColor(Color.GRAY);
-
-                }
-                break;
-            case R.id.block_location_spinner:
-                if(position > 0){
-                    chainageView.setText(String.valueOf( Integer.parseInt(chainage[position])+Integer.parseInt(distanceInKm[position])));
+                    break;
+                case R.id.block_location_spinner:
+                    if(position > 0){
+                        chainageView.setText(String.valueOf( Integer.parseInt(chainage[position])+Integer.parseInt(distanceInKm[position])));
 
 
-                }
-                break;
-            case R.id.block_distance_spinner:
-                if(position > 0 && blockLocSpinner.getSelectedItemPosition()>0 )
-                { chainageView.setText(String.valueOf( Integer.parseInt(chainage[position])+Integer.parseInt(distanceInKm[position])));
-                }
-                break;
-            default:
+                    }
+                    break;
+                case R.id.block_distance_spinner:
+                    if(position > 0 && blockLocSpinner.getSelectedItemPosition()>0 )
+                    { chainageView.setText(String.valueOf( Integer.parseInt(chainage[position])+Integer.parseInt(distanceInKm[position])));
+                    }
+                    break;
+                default:
                 /*if(position > 0){
                     if(position<stationsFrom.length-1){
                         spin2.setSelection(position+1);
@@ -246,13 +282,30 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
                     tv.setTextColor(Color.GRAY);
 
                 }*/
-                break;
+                    break;
 
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(foundationCheckbox.isChecked() && mastsCheckbox.isChecked()){
+            saveBtn.setEnabled(true);
+            saveBtn.setBackgroundColor(Color.RED);
+
+        }else {
+            saveBtn.setEnabled(false);
+            saveBtn.setBackgroundColor(Color.GRAY);
+        }
 
     }
 }
