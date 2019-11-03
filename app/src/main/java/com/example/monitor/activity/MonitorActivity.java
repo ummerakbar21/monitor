@@ -30,13 +30,20 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
     Switch simpleSwitch;
     TextView progressTv;
     private Spinner spin1;
-    private Spinner spin2;
-    private String[]  stations = { "From","Baramula", "USA", "China", "Japan", "Other"};
-    private TextView distanceTV;
-    private   String[] distance={"9","7","6","7","0"};
+    private Spinner spin2, distanceBlockSpinner,foundationSpinner,mastSpinner;
+    private String[] stationsFrom = { "From","Baramula", "USA", "China", "Japan", "Other"};
+    private String[]  stationsTo = { "To","Baramula", "USA", "China", "Japan", "Other"};
+    private String[]  type = { "Type"};
+
+    private TextView distanceTV, chainageView;
+    private   String[] distance={"9","7","6","7","5","0"};
+    private   String[] chainage={"9","7","6","7","5","7"};
+    private String[] distanceInKm={"Km","7","6","7","12","0"};
+    private String[] distanceInL={"L","L1","L2","L3","L4","L5"};
     private ImageView datePicker;
     private int mYear, mMonth, mDay;
     private Button chooseBtn;
+    private Spinner blockLocSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +57,89 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
 
 
 
+
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         spin1 = findViewById(R.id.block_name_from_spinner);
         spin1.setOnItemSelectedListener(this);
         spin2 = findViewById(R.id.block_name_to_spinner);
         distanceTV=findViewById(R.id.distance_tv);
+        distanceBlockSpinner=findViewById(R.id.block_distance_spinner);
+        distanceBlockSpinner.setOnItemSelectedListener(this);
+        blockLocSpinner = findViewById(R.id.block_location_spinner);
+        blockLocSpinner.setOnItemSelectedListener(this);
+        chainageView= findViewById(R.id.chain_age_tv);
+
+        foundationSpinner=findViewById(R.id.foundation_spinner);
+        mastSpinner=findViewById(R.id.mast_spinner);
+
+
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,stations){
+          //Setting the ArrayAdapter data on the Spinner
+        ArrayAdapter spin1adapter=getAdapter();
+        spin1adapter.addAll(stationsFrom);
+        spin1.setAdapter(spin1adapter);
+
+
+
+        ArrayAdapter spin1adapter2=getAdapter();
+        spin1adapter2.addAll(stationsTo);
+        spin2.setClickable(false);
+        spin2.setEnabled(false);
+        spin2.setAdapter(spin1adapter2);
+
+
+        ArrayAdapter foundationAdapter=getAdapter();
+        foundationAdapter.addAll(type);
+        foundationSpinner.setClickable(false);
+        foundationSpinner.setEnabled(false);
+        foundationSpinner.setAdapter(foundationAdapter);
+
+        mastSpinner.setClickable(false);
+        mastSpinner.setEnabled(false);
+        mastSpinner.setAdapter(foundationAdapter);
+
+
+        ArrayAdapter spinAdapterDistance=getAdapter();
+        spinAdapterDistance.addAll(distanceInKm);
+        distanceBlockSpinner.setAdapter(spinAdapterDistance);
+
+        ArrayAdapter spinAdapterLoc=getAdapter();
+        spinAdapterLoc.addAll(distanceInL);
+        blockLocSpinner.setAdapter(spinAdapterLoc);
+
+
+
+
+
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar  = Calendar.getInstance();
+
+                mYear = calendar.get(Calendar.YEAR);
+                mMonth = calendar.get(Calendar.MONTH);
+                mDay = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MonitorActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                    }
+                },mYear,mMonth,mDay);
+                datePickerDialog.show();
+            }
+        });
+
+        chooseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChooseImage();
+            }
+        });
+    }
+
+    private  ArrayAdapter getAdapter() {
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line){
             @Override
             public boolean isEnabled(int position){
                 if(position == 0)
@@ -87,35 +169,7 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
             }
         };
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        spin1.setAdapter(aa);
-        spin2.setAdapter(aa);
-
-
-        datePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar  = Calendar.getInstance();
-
-                mYear = calendar.get(Calendar.YEAR);
-                mMonth = calendar.get(Calendar.MONTH);
-                mDay = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(MonitorActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                    }
-                },mYear,mMonth,mDay);
-                datePickerDialog.show();
-            }
-        });
-
-        chooseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ChooseImage();
-            }
-        });
+        return aa;
     }
 
     private void ChooseImage() {
@@ -149,20 +203,52 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(position > 0){
-            if(position<stations.length-1){
-                spin2.setSelection(position+1);
-            }else {
-                spin2.setSelection(position);
-            }
-            distanceTV.setText(distance[position]);
+        switch (parent.getId()){
+            case R.id.block_name_from_spinner:
+                if(position > 0){
+                    if(position< stationsFrom.length-1){
+                        spin2.setSelection(position+1);
+                    }else {
+                        spin2.setSelection(position);
+                    }
+                    distanceTV.setText(distance[position]);
 
-        }else {
-            TextView tv = (TextView) view;
-           tv.setTextColor(Color.GRAY);
+                }else {
+                    TextView tv = (TextView) view;
+                    spin2.setSelection(position);
+                    tv.setTextColor(Color.GRAY);
+
+                }
+                break;
+            case R.id.block_location_spinner:
+                if(position > 0){
+                    chainageView.setText(String.valueOf( Integer.parseInt(chainage[position])+Integer.parseInt(distanceInKm[position])));
+
+
+                }
+                break;
+            case R.id.block_distance_spinner:
+                if(position > 0 && blockLocSpinner.getSelectedItemPosition()>0 )
+                { chainageView.setText(String.valueOf( Integer.parseInt(chainage[position])+Integer.parseInt(distanceInKm[position])));
+                }
+                break;
+            default:
+                /*if(position > 0){
+                    if(position<stationsFrom.length-1){
+                        spin2.setSelection(position+1);
+                    }else {
+                        spin2.setSelection(position);
+                    }
+                    distanceTV.setText(distance[position]);
+
+                }else {
+                    TextView tv = (TextView) view;
+                    tv.setTextColor(Color.GRAY);
+
+                }*/
+                break;
 
         }
-
     }
 
     @Override
