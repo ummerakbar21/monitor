@@ -8,12 +8,18 @@
     android:background="#f39c12"
     android:id="@+id/rootLayout"
     tools:context=".activity.MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_marginTop="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
   <TextView
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       android:id="@+id/marque_text"
+      android:layout_marginBottom="30dp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentRight="true"
@@ -21,7 +27,7 @@
       android:marqueeRepeatLimit="marquee_forever"
       android:scrollHorizontally="true"
       android:textColor="@android:color/white"
-      android:textSize="15sp"
+      android:textSize="30sp"
       android:text="Web Digitisation of Banihal-Baramulla Section of USBRL Project" />
 
   <de.hdodenhof.circleimageview.CircleImageView
@@ -31,6 +37,7 @@
       android:src="@drawable/logo"
       app:civ_border_color="#ff0000"
       app:civ_border_width="4dp"
+      android:layout_marginTop="20dp"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@id/marque_text" />
@@ -54,6 +61,8 @@
       android:hint="  UserName"
       android:background="@drawable/square_shape"
       android:layout_marginTop="40dp"
+      android:maxLines="1"
+      android:nextFocusDown="@id/et_pass"
       android:layout_width="300dp"
       android:layout_height="40dp"/>
 
@@ -73,6 +82,9 @@
       app:layout_constraintTop_toBottomOf="@id/et_email"
       app:layout_constraintLeft_toRightOf="@id/pass_icon"
       android:hint="  Password"
+      android:maxLines="1"
+      android:nextFocusDown="@id/btn_login"
+      android:inputType="textPassword"
       android:background="@drawable/square_shape"
       android:layout_marginTop="40dp"
       android:layout_width="300dp"
@@ -112,4 +124,6 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
 
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginBottom="10dp"
     tools:context=".activity.FoundationActivity">
 
     <LinearLayout
@@ -16,11 +17,13 @@
             app:cardElevation="4dp"
             app:cardCornerRadius="8dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="4dp"
             android:layout_marginLeft="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="175dp"
+            android:layout_height="200dp">
 
             <LinearLayout
+                android:id="@+id/first_card"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -39,7 +42,10 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="iron" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#4682B4"
+                    android:text="STEEL" />
 
 
             </LinearLayout>
@@ -54,8 +60,8 @@
             app:cardCornerRadius="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="175dp"
+            android:layout_height="200dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -76,7 +82,10 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="iron" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#4682B4"
+                    android:text="WIRING" />
 
 
             </LinearLayout>
@@ -98,8 +107,8 @@
             app:cardCornerRadius="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="175dp"
+            android:layout_height="200dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -120,7 +129,10 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="iron" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#4682B4"
+                    android:text="GUYROD FITTINGS" />
 
 
             </LinearLayout>
@@ -135,8 +147,8 @@
             app:cardCornerRadius="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="175dp"
+            android:layout_height="200dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -157,7 +169,10 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="iron" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#4682B4"
+                    android:text="ATD" />
 
 
             </LinearLayout>
@@ -170,6 +185,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -179,8 +195,8 @@
             app:cardCornerRadius="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="175dp"
+            android:layout_height="200dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -201,7 +217,10 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="iron" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#4682B4"
+                    android:text="TERMINATION FTA" />
 
 
             </LinearLayout>
@@ -214,10 +233,11 @@
             android:id="@+id/cardview_6"
             app:cardElevation="4dp"
             app:cardCornerRadius="8dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="175dp"
+            android:layout_height="200dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -238,7 +258,10 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="iron" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#4682B4"
+                    android:text="TERMINATION BWA" />
 
 
             </LinearLayout>

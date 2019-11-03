@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.monitor.R;
 import com.github.mikephil.charting.charts.PieChart;
@@ -25,6 +26,7 @@ public class FoundationActivity extends AppCompatActivity {
     ArrayList pieEntries;
     ArrayList PieEntryLabels;
     CardView cardViewone;
+    LinearLayout firstLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class FoundationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_foundation);
 
         cardViewone = findViewById(R.id.cardview_one);
+
+        firstLayout = findViewById(R.id.first_card);
         getEntries();
         Description description =new Description();
         description.setText("");
@@ -69,7 +73,7 @@ public class FoundationActivity extends AppCompatActivity {
 
         pieDataSet.setSliceSpace(5f);
 
-        cardViewone.setOnClickListener(new View.OnClickListener() {
+        firstLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(FoundationActivity.this,MonitorActivity.class));

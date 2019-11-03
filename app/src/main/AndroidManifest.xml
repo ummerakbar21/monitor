@@ -12,12 +12,18 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.FoundationActivity"
             android:theme="@style/GraphTheme"
-            android:label="Name"
+            android:label="Inventory Info"
             >
 
         </activity>
 
-        <activity android:name=".activity.MonitorActivity">
+        <activity android:name=".activity.MonitorActivity"
+            android:theme="@style/GraphTheme"
+            android:label="Foundation Progress"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.monitor.activity.FoundationActivity" />
 
         </activity>
         <activity android:name=".activity.MainActivity">
