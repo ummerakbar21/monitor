@@ -28,21 +28,24 @@ import android.widget.Toast;
 
 import com.example.monitor.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MonitorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener , CompoundButton.OnCheckedChangeListener {
 
     private static final int GALLERY_REQUEST_CODE = 1 ;
     Switch simpleSwitch;
-    TextView progressTv;
+    TextView progressTv,dateTxtView;
     private Spinner spin1;
     private Spinner spin2, distanceBlockSpinner,foundationSpinner,mastSpinner;
     private String[] stationsFrom = { "From","Baramula", "Sopore", "Hamre", "Pattan", "Mazhom", "Budgam", "Srinagar", "Pampore","Kakapora","Awantipora","Panzgam","Bijbehara","Anantnag","Dadura","Qazigund","Banihal","Arpinchala","Sumber","Dharam","Sangaldan","Udhampur"};
-    private String[]  stationsTo = { "To","Baramula", "USA", "China", "Japan", "Other"};
+    private String[]  stationsTo = { "To","Baramula", "Sopore", "Hamre", "Pattan", "Mazhom", "Budgam", "Srinagar", "Pampore","Kakapora","Awantipora","Panzgam","Bijbehara","Anantnag","Dadura","Qazigund","Banihal","Arpinchala","Sumber","Dharam","Sangaldan","Udhampur"};
     private String[]  type = { "Type"};
 
     private TextView distanceTV, chainageView,dateView;
-    private   String[] distance={"9","7","6","7","5","0"};
+    private   String[] distance={"9","7","6","7","5","11","13","5","8","6","11","12","9","14","13","8","7","11","10","14","8","0"};
     private   String[] chainage={"9","7","6","7","5","7"};
-    private String[] distanceInKm={"Km","7","6","7","12","0"};
+    private String[] distanceInKm={"Km","1","2","3","4","5"};
     private String[] distanceInL={"L","L1","L2","L3","L4","L5"};
     private ImageView datePicker;
     private int mYear, mMonth, mDay;
@@ -99,6 +102,8 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
         holdSwitch= findViewById(R.id.status_Switch);
         reasonView=findViewById(R.id.hold_tv);
         reasonView.setVisibility(View.GONE);
+        dateTxtView=findViewById(R.id.date_tv);
+        dateTxtView.setVisibility(View.GONE);
 
         holdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -162,7 +167,14 @@ public class MonitorActivity extends AppCompatActivity implements AdapterView.On
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MonitorActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
+                        Calendar calendar1= Calendar.getInstance();
+                        calendar1.set(Calendar.YEAR,year);
+                        calendar1.set(Calendar.MONTH,month);
+                        calendar1.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        String date= dateFormat.format(calendar1.getTime());
+                        dateTxtView.setText(date);
+                        dateTxtView.setVisibility(View.VISIBLE);
 
                     }
                 },mYear,mMonth,mDay);

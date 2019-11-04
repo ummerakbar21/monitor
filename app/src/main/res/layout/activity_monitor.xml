@@ -276,6 +276,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginBottom="60dp"
             android:text="01-20-2019"
+            android:visibility="gone"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toTopOf="@id/foundation_checkbox_label"
             app:layout_constraintHorizontal_bias="0.0"
